@@ -1,0 +1,129 @@
+---
+// src/scripts/TypingHeader.astro
+// Props:
+//  - words: array of strings to type
+//  - tag: string, the HTML tag for the header (h1, h2, etc.)
+//  - typingSpeed: ms per character when typing
+//  - deletingSpeed: ms per character when deleting
+//  - pauseAfterTyping: ms to wait after a word is fully typed
+//  - loop: boolean to loop the sequence
+const {
+  words = ["Placeholder", "Lorem Ipsum", "Hi!"],
+  tag = "h1",
+  typingSpeed = 80,
+  deletingSpeed = 40,
+  pauseAfterTyping = 1200,
+  loop = true,
+} = Astro.props;
+const Tag = tag;
+const escapedWords = JSON.stringify(words);
+---
+<style>
+.typing-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  /* font-smoothing for nicer appearance */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.typing-text {
+  display: inline-block;
+  min-width: 0; /* allow flexible truncation when inside layout */
+}
+
+.cursor {
+  display:inline-block;
+  width: 1ch;
+  /* Use an animation to blink the caret */
+  animation: blink 1s steps(2, start) infinite;
+  font-weight: 600;
+  transform-origin: center;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+</style>
+
+<Tag class={`typing-wrap ${Astro.props.class ?? ''}`} aria-hidden="false">
+  <span class="typing-text" id="astro-typing-text" aria-live="polite"></span>
+  <span class="cursor" aria-hidden="true">▌</span>
+</Tag>
+
+<!-- Serialize words into data attribute so the inline script can read them easily -->
+<div style="display:none" id="astro-typing-data" data-words={escapedWords}
+     data-typing-speed={typingSpeed}
+     data-deleting-speed={deletingSpeed}
+     data-pause-after-typing={pauseAfterTyping}
+     data-loop={loop ? "1" : "0"}></div>
+
+<script>
+(() => {
+  const dataEl = document.getElementById('astro-typing-data');
+  if (!dataEl) return;
+
+  let words: string[] = [];
+
+  try {
+    const parsed = JSON.parse(dataEl.dataset.words || '[]');
+    if (Array.isArray(parsed)) {
+      words = parsed.map(String);
+    }
+  } catch {
+    words = ['(error parsing words)'];
+  }
+
+  const typingSpeed: number = Number(dataEl.dataset.typingSpeed) || 80;
+  const deletingSpeed: number = Number(dataEl.dataset.deletingSpeed) || 40;
+  const pauseAfterTyping: number = Number(dataEl.dataset.pauseAfterTyping) || 1200;
+  const loop: boolean = dataEl.dataset.loop === '1';
+
+  const textEl = document.getElementById('astro-typing-text') as HTMLElement | null;
+  if (!textEl) return;
+
+  let wordIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  const schedule = (fn: () => void, delay: number) => window.setTimeout(fn, delay);
+
+  const tick = () => {
+    const current = words[wordIndex] ?? '';
+    if (!deleting) {
+      charIndex++;
+      textEl.textContent = current.slice(0, charIndex);
+
+      if (charIndex >= current.length) {
+        schedule(() => {
+          deleting = true;
+          tick();
+        }, pauseAfterTyping);
+        return;
+      }
+      schedule(tick, typingSpeed);
+    } else {
+      charIndex--;
+      textEl.textContent = current.slice(0, Math.max(0, charIndex));
+
+      if (charIndex <= 0) {
+        deleting = false;
+        wordIndex++;
+        if (wordIndex >= words.length) {
+          if (loop) wordIndex = 0;
+          else return;
+        }
+        schedule(tick, typingSpeed);
+      } else {
+        schedule(tick, deletingSpeed);
+      }
+    }
+  };
+
+  schedule(tick, 200);
+})();
+</script>
