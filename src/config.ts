@@ -1,40 +1,46 @@
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
-  title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
+  name: "Yee Zhen",
+  title: "Robotics Student",
+  description: "Portfolio website of Yee Zhen",
   accentColor: "#1d4ed8",
   social: {
-    email: "your-email@example.com",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    email: "khooyeezhen@gmail.com",
+    linkedin: "https://www.linkedin.com/in/khoo-yee-zhen/",
+    github: "https://github.com/yeezhen-robotics",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
+    "Robotics student who likes all things robotics. ",
+  skills: ["Python", "C++", "C", "MATLAB", "Electrical Engineering", "Control Systems", "ROS 2"],
   projects: [
-    {
-      name: "AI Dev Roundup Newsletter",
-      description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
-    },
-    {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
-      description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
-    },
-    {
-      name: "ExtensionKit",
-      description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
-    },
-  ],
+      {
+        name: "AD-FastSLAM-FS",
+        description:
+          "Implemented FastSLAM 1.0 on a differential drive robot to simulate cone mapping for a racecar using probabilistic robotics.",
+        link: "https://github.com/yeezhen-robotics/AD-FastSLAM-FS",
+        skills: ["Python", "SLAM", "Probabilistic Robotics"],
+      },
+      {
+        name: "Robotino ROS Remote Workspace",
+        description:
+          "Remote workspace for the Robotino robot enabling development away from the physical device. Includes ROS nodes, configuration files, and PicoScan LiDAR integration over network.",
+        link: "https://github.com/yeezhen-robotics/Robotino-ROS_WS-Remote",
+        skills: ["ROS2", "Sensor Fusion", "VICON", "Software Engineering"],
+      },
+      {
+        name: "GDIP Robot Arm",
+        description:
+          "Medical vial transportation robot arm with teach, autonomous and homing modes. Built for the GDIP third year module at UWE.",
+        link: "https://github.com/yeezhen-robotics/GDIP-Arm-Code",
+        skills: ["Arduino", "Embedded Programming", "Electronic Engineering"],
+      },
+      {
+        name: "HRI Magic Emotion Mirror",
+        description:
+          "NAO robot teaches participants to express happy, sadness, surprise and anger. Designed to help autistic people practice emotions and improve social outcomes.",
+        link: "https://github.com/yeezhen-robotics/HRI-Magic-Emotion-Mirror",
+        skills: ["Python", "NAO Robot", "Machine Learning", "Social Robotics"],
+      },
+    ],
   experience: [
     {
       company: "Tech Company",
