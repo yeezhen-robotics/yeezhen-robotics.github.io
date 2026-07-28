@@ -49,7 +49,7 @@ export const siteConfig = {
       description:
         "Medical vial transportation robot arm with teach, autonomous and homing modes. Built for the GDIP third year module at UWE.",
       link: "https://github.com/yeezhen-robotics/GDIP-Arm-Code",
-      image: "/public/images/projects/GDIPArm.png",
+      image: "/images/projects/GDIPArm.png",
       skills: ["Arduino", "Embedded Programming", "Electronic Engineering"],
     },
     {
