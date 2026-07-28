@@ -7,52 +7,89 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   hasEducation && (
     <section id="education" class="p-16 md:p-24">
       <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-5xl lg:text-7xl font-bold text-gray-900">
-              Education
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+        <div class="mb-12 lg:mb-16">
+          <h2 class="text-5xl lg:text-7xl font-bold text-gray-900">
+            Education
+          </h2>
+          <div
+            class="w-[75px] h-[5px] mt-2 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          />
+        </div>
 
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.education.map((edu) => (
-                <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow duration-300">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                    <div>
-                      <h3 class="text-xl font-semibold text-gray-900">
-                        {edu.degree}
-                      </h3>
-                      <p
-                        class="text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
-                      >
-                        {edu.school}
-                      </p>
-                    </div>
-                    <span class="text-sm text-gray-500 mt-2 sm:mt-0">
-                      {edu.dateRange}
-                    </span>
-                  </div>
+        {/* Separate tiles in a row — logo on top of each, new entries add another
+            tile to the right rather than wrapping or stacking. */}
+        <div class="education-scroll justify-center flex gap-6 overflow-x-auto pb-4">
+          {siteConfig.education.map((edu) => (
+            <div class="relative flex w-80 sm:w-96 flex-none flex-col rounded-2xl border border-gray-200 bg-gray-50 p-8 pt-10 text-center transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-gray-300">
+              {/* University logo */}
+              <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-white shadow-lg">
+                {edu.icon ? (
+                  <img
+                    src={edu.icon}
+                    alt={`${edu.school} logo`}
+                    class="h-full w-full object-cover"
+                  />
+                ) : (
+                  <svg
+                    class="h-8 w-8 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M12 3L2 9l10 6 10-6-10-6zM2 9v6l10 6 10-6V9M12 15v6"
+                    />
+                  </svg>
+                )}
+              </div>
 
-                  <ul class="space-y-2">
-                    {edu.achievements.map((achievement) => (
-                      <li class="flex items-start">
-                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                        <span class="text-gray-600">{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+              <h3 class="text-xl font-semibold text-gray-900">
+                {edu.degree}
+              </h3>
+              <p
+                class="mt-1 text-lg"
+                style={`color: ${siteConfig.accentColor}`}
+              >
+                {edu.school}
+              </p>
+              <span class="mt-2 text-sm text-gray-500">
+                {edu.dateRange}
+              </span>
+
+              <ul class="mt-6 space-y-2 text-left">
+                {edu.achievements.map((achievement) => (
+                  <li class="flex items-start">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
+                    <span class="text-gray-600">{achievement}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   )
 }
+
+<style>
+  /* Slim, quiet horizontal scrollbar for the education tile row */
+  .education-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+  .education-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+  .education-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .education-scroll::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 9999px;
+  }
+</style>

@@ -7,6 +7,14 @@
 //  - deletingSpeed: ms per character when deleting
 //  - pauseAfterTyping: ms to wait after a word is fully typed
 //  - loop: boolean to loop the sequence
+
+type Project = {
+  name: string;
+  description: string;
+  link?: string;
+  image?: string;   // ← add this
+  skills?: string[];
+};
 const {
   words = ["Placeholder", "Lorem Ipsum", "Hi!"],
   tag = "h1",

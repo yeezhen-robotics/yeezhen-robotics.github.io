@@ -1,72 +1,187 @@
 ---
 import { siteConfig } from "../config";
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+
+const allExperience = siteConfig.experience ?? [];
+const hasExperience = allExperience.length > 0;
+
+// Same pattern as Projects: order in config.ts decides placement.
+// First 3 = the full detail tiles (left column), everything after = the
+// scrollable "More Experience" list (right column).
+const featured = allExperience.slice(0, 3);
+const others = allExperience.slice(3);
 ---
 
 {
   hasExperience && (
     <section id="experience" class="p-16 md:p-24">
       <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-5xl lg:text-7xl font-bold text-gray-900">
-              Experience
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
+        <div class="mb-12 lg:mb-16">
+          <h2 class="text-5xl lg:text-7xl font-bold text-gray-900">
+            Experience
+          </h2>
+          <div
+            class="w-[75px] h-[5px] mt-2 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          />
+        </div>
+
+        {/* ---------- Side-by-side split, same shape as Projects ---------- */}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 lg:items-stretch">
+          {/* Left column: top 3, full detail, equal-height stack */}
+          <div class="lg:col-span-7 flex flex-col gap-6">
+            {featured.map((exp) => (
+              <div class="experience-tile relative flex-1 rounded-2xl border border-gray-200 bg-gray-50 p-8 pl-20 sm:pl-24 transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-gray-300">
+                {/* Company logo — overlaid on the far left, vertically centered, always fully visible */}
+                <div class="absolute left-0 top-1/2 z-30 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-gray-200 bg-white p-3 shadow-lg">
+                  {exp.icon ? (
+                    <img
+                      src={exp.icon}
+                      alt={`${exp.company} logo`}
+                      class="h-full w-full object-contain"
+                    />
+                  ) : (
+                    <svg
+                      class="h-8 w-8 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1m-6 4h1m4 0h1m-6 4h1m4 0h1"
+                      />
+                    </svg>
+                  )}
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                  <div>
+                    <h3 class="text-xl font-semibold text-gray-900">
+                      {exp.title}
+                    </h3>
+                    <p
+                      class="text-lg"
+                      style={`color: ${siteConfig.accentColor}`}
+                    >
+                      {exp.company}
+                    </p>
+                  </div>
+                  <span class="text-sm text-gray-500 mt-2 sm:mt-0">
+                    {exp.dateRange}
+                  </span>
+                </div>
+
+                <ul class="space-y-2">
+                  {exp.bullets.map((bullet) => (
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
+                      <span class="text-gray-600">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
-          <div class="lg:col-span-8">
-            <div class="relative">
-              {siteConfig.experience.map((exp, index) => (
-                <div class="relative mb-12 last:mb-0">
-                  {/* Timeline dot at top of card */}
-                  <div
-                    class="absolute left-1/2 -top-2 w-4 h-4 bg-white border-2 rounded-full -translate-x-1/2 z-20 transition-all duration-300"
-                    style={`border-color: ${siteConfig.accentColor}; background-color: ${siteConfig.accentColor}`}
-                  />
-                  
-                  {/* Connecting line below card */}
-                  {index < siteConfig.experience.length - 1 && (
-                    <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" />
-                  )}
-                  
-                  {/* Experience card */}
-                  <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow duration-300">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                      <div>
-                        <h3 class="text-xl font-semibold text-gray-900">
-                          {exp.title}
-                        </h3>
+          {/* Right column: everything after the top 3, scrollable */}
+          <div class="lg:col-span-5">
+            {others.length > 0 ? (
+              <div class="more-experience-scroll flex h-full flex-col rounded-2xl border border-gray-200 bg-gray-50/60 lg:overflow-y-auto">
+                <div class="sticky top-0 z-10 border-b border-gray-200 bg-gray-50/95 px-6 py-4 backdrop-blur-sm">
+                  <span class="text-xs font-mono uppercase tracking-widest text-gray-500">
+                    More Experience · {others.length}
+                  </span>
+                </div>
+                <div class="space-y-3 p-4 lg:p-5">
+                  {others.map((exp) => (
+                    <div class="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-4">
+                      <div class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-white p-2">
+                        {exp.icon ? (
+                          <img
+                            src={exp.icon}
+                            alt={`${exp.company} logo`}
+                            class="h-full w-full object-contain"
+                          />
+                        ) : (
+                          <svg
+                            class="h-6 w-6 text-gray-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1m-6 4h1m4 0h1m-6 4h1m4 0h1"
+                            />
+                          </svg>
+                        )}
+                      </div>
+
+                      <div class="min-w-0 flex-1">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+                          <h4 class="truncate text-base font-semibold text-gray-900">
+                            {exp.title}
+                          </h4>
+                          <span class="shrink-0 text-xs text-gray-400">
+                            {exp.dateRange}
+                          </span>
+                        </div>
                         <p
-                          class="text-lg"
+                          class="text-sm font-medium"
                           style={`color: ${siteConfig.accentColor}`}
                         >
                           {exp.company}
                         </p>
+                        {exp.bullets && exp.bullets.length > 0 && (
+                          <p class="more-experience-desc mt-1 text-sm text-gray-500">
+                            {exp.bullets[0]}
+                          </p>
+                        )}
                       </div>
-                      <span class="text-sm text-gray-500 mt-2 sm:mt-0">
-                        {exp.dateRange}
-                      </span>
                     </div>
-
-                    <ul class="space-y-2">
-                      {exp.bullets.map((bullet) => (
-                        <li class="flex items-start">
-                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                          <span class="text-gray-600">{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ) : (
+              <div class="flex h-full min-h-[200px] items-center justify-center rounded-2xl border border-dashed border-gray-300 p-8 text-center">
+                <p class="text-sm text-gray-400">
+                  More experience will appear here as it's added.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </section>
   )
 }
+
+<style>
+  /* Single-line clamp for compact "more experience" descriptions */
+  .more-experience-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Slim, quiet scrollbar for the "more experience" panel */
+  .more-experience-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+  .more-experience-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  .more-experience-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .more-experience-scroll::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 9999px;
+  }
+</style>
