@@ -17,7 +17,7 @@ export const siteConfig = {
       description:
         "Built a hexapod for the exploration of different terrain types. Allows for first person viewing whist having an operation range of 100m",
       link: "https://yeezhen-robotics.github.io/HexapodYZ/",
-      image: "/images/projects/Hexapod.png",
+      image: "/public/images/projects/Hexapod.png",
       skills: ["CAD Design", "Electrical Engineering", "Embedded Programming"],
     },
     {
@@ -25,7 +25,7 @@ export const siteConfig = {
       description:
         "Built software to interface with the Nimbus V0, with GNSS integration and depth cloud perception. Includes a machine vision activated human stopping system, while also comes with a custom controller, allowing for three modes of steering and operation to navigate agricultural environments.",
       link: "https://www.nimbusagritech.com/",
-      image: "/images/projects/nimbus.png",
+      image: "/public/images/projects/nimbus.png",
       skills: ["ROS2", "Gazebo Simulator", "GNSS", "Machine Vision", "Kalman Filtering"],
     },
     {
@@ -33,7 +33,7 @@ export const siteConfig = {
       description:
         "Implemented FastSLAM 1.0 on a differential drive robot to simulate cone mapping for a racecar using probabilistic robotics.",
       link: "https://github.com/yeezhen-robotics/AD-FastSLAM-FS",
-      image: "/images/projects/DV.png", 
+      image: "/public/images/projects/DV.png", 
       skills: ["Python", "SLAM", "Probabilistic Robotics"],
     },
     {
@@ -41,7 +41,7 @@ export const siteConfig = {
       description:
         "Remote workspace for the Robotino robot enabling development away from the physical device. Includes ROS nodes, configuration files, and PicoScan LiDAR integration over network.",
       link: "https://github.com/yeezhen-robotics/Robotino-ROS_WS-Remote",
-      image: "/images/projects/Robotino.png",
+      image: "/public/images/projects/Robotino.png",
       skills: ["ROS2", "Sensor Fusion", "VICON", "Software Engineering"],
     },
     {
@@ -49,7 +49,7 @@ export const siteConfig = {
       description:
         "Medical vial transportation robot arm with teach, autonomous and homing modes. Built for the GDIP third year module at UWE.",
       link: "https://github.com/yeezhen-robotics/GDIP-Arm-Code",
-      image: "/images/projects/GDIPArm.png",
+      image: "/public/images/projects/GDIPArm.png",
       skills: ["Arduino", "Embedded Programming", "Electronic Engineering"],
     },
     {
@@ -57,7 +57,7 @@ export const siteConfig = {
       description:
         "NAO robot teaches participants to express happy, sadness, surprise and anger. Designed to help autistic people practice emotions and improve social outcomes.",
       link: "https://github.com/yeezhen-robotics/HRI-Magic-Emotion-Mirror",
-      image: "/images/projects/NAO.png",
+      image: "/public/images/projects/NAO.png",
       skills: ["Python", "NAO Robot", "Machine Learning", "Social Robotics"],
     },
   ],
@@ -66,7 +66,7 @@ export const siteConfig = {
       company: "Nimbus Agri-Tech Ltd",
       title: "ROS2 Robotics Localisation and Integration Intern",
       dateRange: "Jun - Aug 2026",
-      icon: "/images/experience/nimbus.png", 
+      icon: "/public/images/experience/nimbus.png", 
       bullets: [
         "Integrated high precision GNSS hardware and robust human safety features into a mobile robot, producing validation tests and identifying antenna limitations.",
         "Developed a Gazebo simulator to emulate the onboard communication of the robot, antenna and machine vision architecture.",
@@ -78,7 +78,7 @@ export const siteConfig = {
       company: "UWE-AI",
       title: "SLAM Team Lead",
       dateRange: "Sep 2024 - May 2026",
-      icon: "/images/experience/uweai.jpg", 
+      icon: "/public/images/experience/uweai.jpg", 
       bullets: [
         "Completed Implementation of EKF SLAM and FastSLAM 1.0 as foundation of society mapping stack.",
         "Competed in IMECHE FS-AI Category, achieving 5th place in technical presentation",
@@ -89,7 +89,7 @@ export const siteConfig = {
       company: "Bristol Robotics Lab",
       title: "2D Spatio-Temporal Occupancy Grid Mapping (Final Year Project)",
       dateRange: "Sep 2025 - May 2026",
-      icon: "/images/experience/brl.jpg",
+      icon: "/public/images/experience/brl.jpg",
       bullets: [
         "Examined assumptions of classical SLAM algorithms, focusing on the static world assumption",
         "Investigated resilience of particle-filter based localisation in highly dynamic environments",
@@ -100,7 +100,7 @@ export const siteConfig = {
       company: "Bristol Robotics Lab",
       title: "Semantic SLAM Research Intern",
       dateRange: "Jul - Sep 2025",
-      icon: "/images/experience/brl.jpg",
+      icon: "/public/images/experience/brl.jpg",
       bullets: [
         "Designed and deployed a mobile Robotino-based data collection platform for semantic SLAM research",
         "Implemented Ubuntu service applications to auto-launch ROS2 network, reducing setup time and human error",
@@ -113,7 +113,7 @@ export const siteConfig = {
       school: "University of the West of England",
       degree: "BEng Robotics",
       dateRange: "2023 - 2026",
-      icon: "/images/education/uwe.png", 
+      icon: "/public/images/education/uwe.png", 
       achievements: [
         "Grade: (1:1) 1st class with Hons (overall grade of 79%)",
         "Specialising in robotic architecture, control systems, and machine vision.",
@@ -123,7 +123,7 @@ export const siteConfig = {
       school: "Imperial College London",
       degree: "MSc Control and Optimisation",
       dateRange: "2026 - 2027",
-      icon: "/images/education/imperial.png", 
+      icon: "/public/images/education/imperial.png", 
       achievements: [
       ],
     },
