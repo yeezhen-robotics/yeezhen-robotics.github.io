@@ -23,7 +23,7 @@ export const siteConfig = {
     {
       name: "Nimbus Robotic Platform",
       description:
-        "Built software to interface with the Nimbus V0, with GNSS integration and depth cloud perception. Includes a machine vision activated human stopping system, while also comes with a custom controller, allowing for three modes of steering and operation to navigate agricultural environments.",
+        "Built software to interface with the Nimbus V0, with GNSS integration and depth cloud perception. Includes a machine vision activated human stopping system and a custom controller. Allows for three modes of operation to navigate agricultural environments.",
       link: "https://www.nimbusagritech.com/",
       image: "/images/projects/nimbus.png",
       skills: ["ROS2", "Gazebo Simulator", "GNSS", "Machine Vision", "Kalman Filtering"],
@@ -65,7 +65,7 @@ export const siteConfig = {
     {
       company: "Nimbus Agri-Tech Ltd",
       title: "ROS2 Robotics Localisation and Integration Intern",
-      dateRange: "Jun - Aug 2026",
+      dateRange: "Jun 2026 - Aug 2026",
       icon: "/images/experience/nimbus.png", 
       bullets: [
         "Integrated high precision GNSS hardware and robust human safety features into a mobile robot, producing validation tests and identifying antenna limitations.",
@@ -99,12 +99,23 @@ export const siteConfig = {
     {
       company: "Bristol Robotics Lab",
       title: "Semantic SLAM Research Intern",
-      dateRange: "Jul - Sep 2025",
+      dateRange: "Jul 2025 - Sep 2025",
       icon: "/images/experience/brl.jpg",
       bullets: [
         "Designed and deployed a mobile Robotino-based data collection platform for semantic SLAM research",
         "Implemented Ubuntu service applications to auto-launch ROS2 network, reducing setup time and human error",
         "Conducted pilot data collection in Health Tech Hub validating system stability and data quality",
+      ],
+    },
+    {
+      company: "University of the West of England",
+      title: "PAL Leader",
+      dateRange: "Sep 2024 - May 2025",
+      icon: "/images/experience/uwe.png",
+      bullets: [
+        "Facilitated new cohorts of engineering undergraduates on academic matters to improve student outcomes.",
+        "Run planned weekly sessions related to student feedback using activities to encourage active learning",
+        "This role mainly taught me important presentation, communication and administration skills which enables me to more effectively guide and lead a student group to a common goal."
       ],
     },
   ],

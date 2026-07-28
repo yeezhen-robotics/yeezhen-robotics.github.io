@@ -68,7 +68,7 @@ const others = allExperience.slice(3);
                       {exp.company}
                     </p>
                   </div>
-                  <span class="text-sm text-gray-500 mt-2 sm:mt-0">
+                  <span class="text-sm text-gray-500 mt-2 sm:mt-0 whitespace-nowrap shrink-0">
                     {exp.dateRange}
                   </span>
                 </div>
@@ -96,7 +96,7 @@ const others = allExperience.slice(3);
                 </div>
                 <div class="space-y-3 p-4 lg:p-5">
                   {others.map((exp) => (
-                    <div class="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-4">
+                    <div class="more-experience-row flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:shadow-md hover:border-gray-300">
                       <div class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-white p-2">
                         {exp.icon ? (
                           <img
@@ -122,11 +122,11 @@ const others = allExperience.slice(3);
                       </div>
 
                       <div class="min-w-0 flex-1">
-                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-                          <h4 class="truncate text-base font-semibold text-gray-900">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+                          <h4 class="more-experience-title text-base font-semibold text-gray-900">
                             {exp.title}
                           </h4>
-                          <span class="shrink-0 text-xs text-gray-400">
+                          <span class="shrink-0 whitespace-nowrap text-xs text-gray-400">
                             {exp.dateRange}
                           </span>
                         </div>
@@ -136,10 +136,23 @@ const others = allExperience.slice(3);
                         >
                           {exp.company}
                         </p>
+
                         {exp.bullets && exp.bullets.length > 0 && (
-                          <p class="more-experience-desc mt-1 text-sm text-gray-500">
-                            {exp.bullets[0]}
-                          </p>
+                          <>
+                            <p class="more-experience-desc mt-1 text-sm text-gray-500">
+                              {exp.bullets[0]}
+                            </p>
+                            {exp.bullets.length > 1 && (
+                              <ul class="more-experience-extra space-y-1.5">
+                                {exp.bullets.slice(1).map((bullet) => (
+                                  <li class="flex items-start text-sm text-gray-500">
+                                    <span class="mt-2 mr-2.5 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-gray-400" />
+                                    <span>{bullet}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </>
                         )}
                       </div>
                     </div>
@@ -161,12 +174,50 @@ const others = allExperience.slice(3);
 }
 
 <style>
-  /* Single-line clamp for compact "more experience" descriptions */
+  /* Title: single line + ellipsis by default, unfolds to full text on hover */
+  .more-experience-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .more-experience-row:hover .more-experience-title {
+    white-space: normal;
+    overflow: visible;
+  }
+
+  /* First bullet: single-line preview by default, full line on hover */
   .more-experience-desc {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  .more-experience-row:hover .more-experience-desc {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  /* Remaining bullets: collapsed to nothing by default, expand on hover */
+  .more-experience-extra {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.35s ease,
+      opacity 0.25s ease,
+      margin-top 0.35s ease;
+  }
+  .more-experience-row:hover .more-experience-extra {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 0.375rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .more-experience-extra {
+      transition: none;
+    }
   }
 
   /* Slim, quiet scrollbar for the "more experience" panel */
