@@ -9,7 +9,7 @@ export const siteConfig = {
     github: "https://github.com/yeezhen-robotics",
   },
   aboutMe:
-    "Hi|Selamat Datang|你好! Welcome to my portfolio where I cover my journey in building robotics for all. My mission is to make robotics affordable, effective and accessible to everyone. I believe that when used correctly, robotics will revolutionise how people work, ease social burdens and provide opportunities to the needy. I have keen interests in control theory, soft robotics, assistive living robotics, SLAM and guitar. If you have anything cool to share (tech or otherwise), feel free to reach out!",
+    "I work best in fast-paced and rapidly evolving environments, spear heading the emerging era of automation. Welcome to my portfolio where I cover my journey in building robotics for all. My personal mission is to make robotics affordable, effective and accessible. With time, robotics will revolutionise how people work, ease social burdens and provide new opportunities for social improvement. I have keen interests in control theory, soft robotics, assistive living robotics and SLAM. If you have anything novel to share (tech or otherwise), feel free to reach out!",
   skills: [ "ROS 2", "Python", "C++", "C", "MATLAB", "Electrical Engineering", "Control Systems",],
   projects: [
     {
