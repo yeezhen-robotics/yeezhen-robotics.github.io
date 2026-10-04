@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Ethan Khoo",
+  name: "Ethan",
   title: "Robotics Student",
   description: "Portfolio website of Ethan",
   accentColor: "#e0871a",
