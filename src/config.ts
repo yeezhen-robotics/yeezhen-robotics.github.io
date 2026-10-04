@@ -1,6 +1,7 @@
 export const siteConfig = {
-  name: "Ethan",
-  title: "Robotics Student",
+  name: "Ethan Khoo",
+  name_short: "Ethan",
+  title: "Personal Portfolio",
   description: "Portfolio website of Ethan",
   accentColor: "#e0871a",
   social: {
