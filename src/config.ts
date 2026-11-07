@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Ethan Khoo",
-  name_short: "Ethan",
+  name: "Khoo Yee Zhen",
+  name_short: "Yee Zhen",
   title: "Personal Portfolio",
-  description: "Portfolio website of Ethan",
+  description: "Portfolio website of Yee Zhen",
   accentColor: "#e0871a",
   social: {
     email: "khooyeezhen@gmail.com",
